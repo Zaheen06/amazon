@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopZone - Online Shopping</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="logo">
+                <i class="fas fa-shopping-cart"></i>
+                <span>ShopZone</span>
+            </div>
+            
+            <div class="delivery-address">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <span class="small-text">Deliver to</span>
+                    <span class="bold-text">New York 10001</span>
+                </div>
+            </div>
+            
+            <div class="search-bar">
+                <select class="category-select">
+                    <option>All</option>
+                    <option>Electronics</option>
+                    <option>Fashion</option>
+                    <option>Home & Kitchen</option>
+                    <option>Books</option>
+                    <option>Sports</option>
+                </select>
+                <input type="text" placeholder="Search products...">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <div class="header-links">
+                <div class="header-link">
+                    <span class="small-text">Hello, Sign in</span>
+                    <span class="bold-text">Account & Lists <i class="fas fa-caret-down"></i></span>
+                </div>
+                <div class="header-link">
+                    <span class="small-text">Returns</span>
+                    <span class="bold-text">& Orders</span>
+                </div>
+                <div class="header-link cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                    <span class="bold-text">Cart</span>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="nav-bar">
+            <ul>
+                <li><i class="fas fa-bars"></i> All</li>
+                <li>Today's Deals</li>
+                <li>Customer Service</li>
+                <li>Registry</li>
+                <li>Gift Cards</li>
+                <li>Sell</li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h1>Shop the best deals of the season</h1>
+            <p>Discover amazing products at unbeatable prices</p>
+            <button class="cta-button">Shop Now</button>
+        </div>
+    </section>
+
+    <!-- Category Cards -->
+    <section class="category-section">
+        <div class="category-grid">
+            <div class="category-card">
+                <h3>Electronics</h3>
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400&h=300&fit=crop" alt="Electronics">
+                </div>
+                <a href="#" class="category-link">Shop now</a>
+            </div>
+            
+            <div class="category-card">
+                <h3>Fashion</h3>
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=400&h=300&fit=crop" alt="Fashion">
+                </div>
+                <a href="#" class="category-link">Shop now</a>
+            </div>
+            
+            <div class="category-card">
+                <h3>Home & Kitchen</h3>
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=400&h=300&fit=crop" alt="Home">
+                </div>
+                <a href="#" class="category-link">Shop now</a>
+            </div>
+            
+            <div class="category-card">
+                <h3>Books</h3>
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=400&h=300&fit=crop" alt="Books">
+                </div>
+                <a href="#" class="category-link">Shop now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <h2>Today's Deals</h2>
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-badge">-25%</span>
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop" alt="Headphones">
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <h3>Wireless Headphones</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(1,234)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">$74.99</span>
+                        <span class="original-price">$99.99</span>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-badge">-30%</span>
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop" alt="Watch">
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <h3>Premium Smart Watch</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>(892)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">$139.99</span>
+                        <span class="original-price">$199.99</span>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-badge">-15%</span>
+                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop" alt="Sunglasses">
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <h3>Designer Sunglasses</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(2,156)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">$84.99</span>
+                        <span class="original-price">$99.99</span>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-badge">-40%</span>
+                    <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&h=400&fit=crop" alt="Sneakers">
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <h3>Running Sneakers</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(3,421)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">$59.99</span>
+                        <span class="original-price">$99.99</span>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-badge">-20%</span>
+                    <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&h=400&fit=crop" alt="Perfume">
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <h3>Luxury Perfume</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>(567)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">$79.99</span>
+                        <span class="original-price">$99.99</span>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-badge">-35%</span>
+                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop" alt="Backpack">
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <h3>Travel Backpack</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(1,890)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">$45.99</span>
+                        <span class="original-price">$69.99</span>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-badge">-18%</span>
+                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&h=400&fit=crop" alt="Camera">
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <h3>Digital Camera</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(745)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">$329.99</span>
+                        <span class="original-price">$399.99</span>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="discount-badge">-50%</span>
+                    <img src="https://images.unsplash.com/photo-1589391886645-d51941baf7fb?w=400&h=400&fit=crop" alt="Keyboard">
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <h3>Mechanical Keyboard</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(2,987)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">$49.99</span>
+                        <span class="original-price">$99.99</span>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner Section -->
+    <section class="banner-promo">
+        <div class="banner-content">
+            <h2>Sign in for the best experience</h2>
+            <button class="sign-in-btn">Sign in securely</button>
+        </div>
+    </section>
+
+    <!-- More Products -->
+    <section class="products-section">
+        <h2>Recommended for You</h2>
+        <div class="products-grid">
+            <!-- Product 9 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400&h=400&fit=crop" alt="Smart Speaker">
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <h3>Smart Speaker</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>(4,234)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">$89.99</span>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 10 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=400&h=400&fit=crop" alt="Plant">
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <h3>Indoor Plant Set</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(1,567)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">$34.99</span>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 11 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=400&fit=crop" alt="Laptop">
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <h3>Laptop Computer</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(5,432)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">$799.99</span>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 12 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=400&h=400&fit=crop" alt="Console">
+                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="product-info">
+                    <h3>Gaming Console</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(8,901)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">$499.99</span>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            Back to top
+        </div>
+        
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Get to Know Us</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press Releases</a></li>
+                    <li><a href="#">ShopZone Cares</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Make Money with Us</h4>
+                <ul>
+                    <li><a href="#">Sell on ShopZone</a></li>
+                    <li><a href="#">Become an Affiliate</a></li>
+                    <li><a href="#">Advertise Your Products</a></li>
+                    <li><a href="#">Self-Publish with Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Payment Products</h4>
+                <ul>
+                    <li><a href="#">ShopZone Business Card</a></li>
+                    <li><a href="#">Shop with Points</a></li>
+                    <li><a href="#">Reload Your Balance</a></li>
+                    <li><a href="#">Currency Converter</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Let Us Help You</h4>
+                <ul>
+                    <li><a href="#">Your Account</a></li>
+                    <li><a href="#">Your Orders</a></li>
+                    <li><a href="#">Shipping Rates & Policies</a></li>
+                    <li><a href="#">Returns & Replacements</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-logo">
+                <i class="fas fa-shopping-cart"></i>
+                <span>ShopZone</span>
+            </div>
+            <div class="footer-links">
+                <a href="#">Conditions of Use</a>
+                <a href="#">Privacy Notice</a>
+                <a href="#">Interest-Based Ads</a>
+            </div>
+            <p>&copy; 2026 ShopZone.com, Inc. or its affiliates</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
