@@ -1,494 +1,700 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="scroll-smooth" lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopZone - Online Shopping</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Edutainer | Learning for the Modern World</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  
+  <!-- Plus Jakarta Sans Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+  
+  <!-- FontAwesome for premium iconography -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            // Established 7-color palette + White
+            "brand-bg": "#F0F7FF",
+            "brand-border": "#A7D4FF",
+            "brand-accent": "#54AFFE",
+            "brand-primary": "#048CE4",
+            "brand-secondary": "#0268AB",
+            "brand-body": "#014372",
+            "brand-darkest": "#00223D",
+            "brand-white": "#FFFFFF"
+          },
+          borderRadius: {
+            "DEFAULT": "20px",
+            "lg": "20px",
+            "xl": "20px",
+            "full": "9999px"
+          },
+          spacing: {
+            "max-width": "1160px",
+            "stack-lg": "48px",
+            "stack-sm": "12px",
+            "container-h-padding": "24px",
+            "gutter": "24px",
+            "stack-md": "24px",
+            "section-v-padding": "80px"
+          },
+          fontFamily: {
+            "body": ["Plus Jakarta Sans", "sans-serif"],
+            "heading": ["Plus Jakarta Sans", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #F0F7FF;
+      color: #014372;
+    }
+  </style>
 </head>
-<body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-top">
-            <div class="logo">
-                <i class="fas fa-shopping-cart"></i>
-                <span>ShopZone</span>
-            </div>
-            
-            <div class="delivery-address">
-                <i class="fas fa-map-marker-alt"></i>
-                <div>
-                    <span class="small-text">Deliver to</span>
-                    <span class="bold-text">New York 10001</span>
-                </div>
-            </div>
-            
-            <div class="search-bar">
-                <select class="category-select">
-                    <option>All</option>
-                    <option>Electronics</option>
-                    <option>Fashion</option>
-                    <option>Home & Kitchen</option>
-                    <option>Books</option>
-                    <option>Sports</option>
-                </select>
-                <input type="text" placeholder="Search products...">
-                <button class="search-btn">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-            
-            <div class="header-links">
-                <div class="header-link">
-                    <span class="small-text">Hello, Sign in</span>
-                    <span class="bold-text">Account & Lists <i class="fas fa-caret-down"></i></span>
-                </div>
-                <div class="header-link">
-                    <span class="small-text">Returns</span>
-                    <span class="bold-text">& Orders</span>
-                </div>
-                <div class="header-link cart">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count">0</span>
-                    <span class="bold-text">Cart</span>
-                </div>
-            </div>
+
+<body class="antialiased bg-brand-bg text-brand-body font-body">
+
+  <!-- 1. Navbar -->
+  <nav class="bg-white h-20 sticky top-0 z-50 border-b border-brand-border">
+    <div class="max-w-[1160px] mx-auto px-6 h-full flex justify-between items-center">
+      <a href="#" class="flex items-center">
+        <img src="./edu_logo.svg" alt="Edutainer Logo" class="h-9 w-auto">
+      </a>
+      
+      <!-- Nav Links -->
+      <div class="hidden md:flex gap-8 items-center">
+        <a class="font-semibold text-[15px] text-brand-secondary hover:text-brand-primary transition-all" href="#courses">Courses</a>
+        <a class="font-semibold text-[15px] text-brand-secondary hover:text-brand-primary transition-all" href="#about">About Us</a>
+        <a class="font-semibold text-[15px] text-brand-secondary hover:text-brand-primary transition-all" href="#pricing">Pricing</a>
+        <a class="font-semibold text-[15px] text-brand-secondary hover:text-brand-primary transition-all" href="mailto:contact@edutainer.com">Contact Us</a>
+      </div>
+      
+      <!-- Nav Actions -->
+      <div class="hidden md:flex items-center gap-4">
+        <button class="font-semibold text-[15px] text-brand-secondary hover:text-brand-primary transition-all px-4 py-2">Sign In</button>
+        <button class="bg-brand-primary text-white font-bold text-[15px] px-6 py-3 rounded-full hover:bg-brand-secondary hover:-translate-y-0.5 transition-all shadow-sm active:scale-95">Register</button>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button class="md:hidden text-brand-darkest text-2xl focus:outline-none" id="menuToggle" aria-label="Toggle Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="hidden md:hidden bg-white border-b border-brand-border absolute top-20 left-0 w-full px-6 py-6 flex flex-col gap-6 shadow-lg z-40 transition-all" id="mobileMenu">
+      <a class="font-semibold text-[16px] text-brand-secondary hover:text-brand-primary transition-all" href="#courses">Courses</a>
+      <a class="font-semibold text-[16px] text-brand-secondary hover:text-brand-primary transition-all" href="#about">About Us</a>
+      <a class="font-semibold text-[16px] text-brand-secondary hover:text-brand-primary transition-all" href="#pricing">Pricing</a>
+      <a class="font-semibold text-[16px] text-brand-secondary hover:text-brand-primary transition-all" href="mailto:contact@edutainer.com">Contact Us</a>
+      <hr class="border-brand-border">
+      <div class="flex flex-col gap-3">
+        <button class="font-semibold text-[16px] text-brand-secondary hover:text-brand-primary transition-all py-2 text-left">Sign In</button>
+        <button class="bg-brand-primary text-white font-bold text-[16px] py-3 rounded-full hover:bg-brand-secondary transition-all text-center">Register</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 2. Hero Section -->
+  <section class="py-20 relative overflow-hidden bg-brand-bg">
+    <!-- Premium background glowing gradients -->
+    <div class="absolute w-[300px] h-[300px] rounded-full bg-brand-primary opacity-[0.07] blur-[80px] top-[-50px] right-[-50px] pointer-events-none"></div>
+    <div class="absolute w-[350px] h-[350px] rounded-full bg-brand-accent opacity-[0.08] blur-[100px] bottom-[-100px] left-[-100px] pointer-events-none"></div>
+
+    <div class="max-w-[1160px] mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 items-center relative z-10">
+      <!-- Hero Left Text -->
+      <div class="md:col-span-7 flex flex-col items-start text-left">
+        <div class="inline-flex items-center gap-2 bg-white border border-brand-border px-4 py-2 rounded-full mb-6 shadow-sm">
+          <i class="fa-solid fa-graduation-cap text-brand-primary"></i>
+          <span class="text-brand-primary font-bold text-[13px] tracking-wide uppercase">Welcome to Edutainer</span>
         </div>
+        <h1 class="text-[#00223D] font-extrabold text-[44px] md:text-[52px] leading-[1.1] tracking-tight mb-6">
+          Learning for the <br><span class="text-brand-primary">Modern World</span>
+        </h1>
+        <p class="text-brand-body text-[17px] md:text-[18px] leading-relaxed mb-8 max-w-xl">
+          Reshaping Learning for the Modern World, where Education Meets Accessibility and Inclusivity.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          <a href="#courses" class="bg-brand-primary text-white font-bold text-[15px] px-8 py-4 rounded-full hover:bg-brand-secondary hover:-translate-y-0.5 transition-all text-center shadow-md shadow-blue-500/10">Explore Courses</a>
+        </div>
+      </div>
+
+      <!-- Hero Right Image ("Students learning online with Edutainer") -->
+      <div class="md:col-span-5 flex justify-center">
+        <div class="relative w-full max-w-[420px]">
+          <div class="bg-white border-2 border-brand-border rounded-[24px] p-3 shadow-xl hover:shadow-2xl transition-all duration-300">
+            <img alt="Students learning online with Edutainer" class="w-full h-auto object-cover rounded-[18px]" src="./students_learning.png" />
+          </div>
+          <!-- Decorative element -->
+          <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-brand-accent rounded-2xl opacity-15 rotate-12 -z-10"></div>
+          <div class="absolute -top-4 -right-4 w-20 h-20 bg-brand-primary rounded-full opacity-10 blur-xl -z-10"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. What We Offer -->
+  <section class="py-20 bg-white border-t border-brand-border" id="offer">
+    <div class="max-w-[1160px] mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-brand-darkest font-extrabold text-[36px] tracking-tight mb-4">What We Offer</h2>
+        <p class="text-brand-secondary text-[18px] leading-relaxed">
+          Everything You Need to Succeed. Four pillars that make Edutainer the platform learners trust to launch and grow their careers.
+        </p>
+      </div>
+
+      <!-- 4 Pillars Grid (Refined 2x2 Grid with 8px Spacing System) -->
+      <div class="max-w-[860px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Pillar 1 -->
+        <div class="bg-white border-2 border-brand-border p-8 rounded-[24px] shadow-sm flex items-center justify-between gap-6 text-left min-h-[168px] hover:border-brand-primary transition-all duration-300">
+          <div class="flex-grow">
+            <h3 class="text-brand-darkest font-extrabold text-[20px] leading-tight mb-2">Flexible Learning</h3>
+            <p class="text-brand-body text-[14px] font-normal leading-[1.6] max-w-[280px]">Learn at your own pace from any device, adapting perfectly to your lifestyle.</p>
+          </div>
+          <div class="w-14 h-14 rounded-full bg-brand-primary flex items-center justify-center text-white text-xl flex-shrink-0">
+            <i class="fa-regular fa-clock"></i>
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="bg-white border-2 border-brand-border p-8 rounded-[24px] shadow-sm flex items-center justify-between gap-6 text-left min-h-[168px] hover:border-brand-primary transition-all duration-300">
+          <div class="flex-grow">
+            <h3 class="text-brand-darkest font-extrabold text-[20px] leading-tight mb-2">Expert Instructors</h3>
+            <p class="text-brand-body text-[14px] font-normal leading-[1.6] max-w-[280px]">Receive real-world insights from instructors working at top industry companies.</p>
+          </div>
+          <div class="w-14 h-14 rounded-full bg-brand-primary flex items-center justify-center text-white text-xl flex-shrink-0">
+            <i class="fa-solid fa-user-tie"></i>
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="bg-white border-2 border-brand-border p-8 rounded-[24px] shadow-sm flex items-center justify-between gap-6 text-left min-h-[168px] hover:border-brand-primary transition-all duration-300">
+          <div class="flex-grow">
+            <h3 class="text-brand-darkest font-extrabold text-[20px] leading-tight mb-2">Industry Driven Internship</h3>
+            <p class="text-brand-body text-[14px] font-normal leading-[1.6] max-w-[280px]">Apply your knowledge in live projects through virtual internships with partners.</p>
+          </div>
+          <div class="w-14 h-14 rounded-full bg-brand-primary flex items-center justify-center text-white text-xl flex-shrink-0">
+            <i class="fa-solid fa-briefcase"></i>
+          </div>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="bg-white border-2 border-brand-border p-8 rounded-[24px] shadow-sm flex items-center justify-between gap-6 text-left min-h-[168px] hover:border-brand-primary transition-all duration-300">
+          <div class="flex-grow">
+            <h3 class="text-brand-darkest font-extrabold text-[20px] leading-tight mb-2">Cutting-Edge Courses</h3>
+            <p class="text-brand-body text-[14px] font-normal leading-[1.6] max-w-[280px]">Stay ahead with modern curriculum updated continuously to fit current demands.</p>
+          </div>
+          <div class="w-14 h-14 rounded-full bg-brand-primary flex items-center justify-center text-white text-xl flex-shrink-0">
+            <i class="fa-solid fa-laptop-code"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Our Services -->
+  <section class="py-20 bg-brand-bg border-t border-brand-border" id="about">
+    <div class="max-w-[1160px] mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-brand-darkest font-extrabold text-[36px] tracking-tight mb-4">Our Services</h2>
+        <p class="text-brand-secondary text-[18px] leading-relaxed">
+          Comprehensive learning solutions designed to empower your educational journey and career growth.
+        </p>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <!-- Service 1 -->
+        <div class="bg-white border-2 border-brand-border p-8 rounded-[20px] shadow-sm hover:border-brand-primary hover:shadow-md transition-all duration-300 flex flex-col h-full relative overflow-hidden group">
+          <div class="w-14 h-14 bg-brand-bg rounded-[14px] flex items-center justify-center border border-brand-border text-brand-primary text-2xl mb-6">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <h3 class="text-brand-darkest font-extrabold text-[18px] mb-3">Hands-On Learning</h3>
+          <p class="text-brand-body text-[14px] leading-relaxed mb-6">Engage with projects designed to build real skills through practical application.</p>
+          <a href="#" class="mt-auto inline-flex items-center gap-1.5 font-bold text-[13px] text-brand-primary hover:text-brand-secondary transition-all">Read more <i class="fa-solid fa-arrow-right text-[11px]"></i></a>
+          <!-- Bottom Accent Line -->
+          <div class="absolute bottom-0 left-0 w-full h-[4px] bg-brand-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="bg-white border-2 border-brand-border p-8 rounded-[20px] shadow-sm hover:border-brand-primary hover:shadow-md transition-all duration-300 flex flex-col h-full relative overflow-hidden group">
+          <div class="w-14 h-14 bg-brand-bg rounded-[14px] flex items-center justify-center border border-brand-border text-brand-primary text-2xl mb-6">
+            <i class="fa-solid fa-user-check"></i>
+          </div>
+          <h3 class="text-brand-darkest font-extrabold text-[18px] mb-3">Personalized Support</h3>
+          <p class="text-brand-body text-[14px] leading-relaxed mb-6">Get one-on-one guidance to help you succeed in your learning journey.</p>
+          <a href="#" class="mt-auto inline-flex items-center gap-1.5 font-bold text-[13px] text-brand-primary hover:text-brand-secondary transition-all">Read more <i class="fa-solid fa-arrow-right text-[11px]"></i></a>
+          <!-- Bottom Accent Line -->
+          <div class="absolute bottom-0 left-0 w-full h-[4px] bg-brand-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="bg-white border-2 border-brand-border p-8 rounded-[20px] shadow-sm hover:border-brand-primary hover:shadow-md transition-all duration-300 flex flex-col h-full relative overflow-hidden group">
+          <div class="w-14 h-14 bg-brand-bg rounded-[14px] flex items-center justify-center border border-brand-border text-brand-primary text-2xl mb-6">
+            <i class="fa-solid fa-book-open-reader"></i>
+          </div>
+          <h3 class="text-brand-darkest font-extrabold text-[18px] mb-3">Flexible Courses</h3>
+          <p class="text-brand-body text-[14px] leading-relaxed mb-6">Choose from a variety of courses to suit your learning style and schedule.</p>
+          <a href="#" class="mt-auto inline-flex items-center gap-1.5 font-bold text-[13px] text-brand-primary hover:text-brand-secondary transition-all">Read more <i class="fa-solid fa-arrow-right text-[11px]"></i></a>
+          <!-- Bottom Accent Line -->
+          <div class="absolute bottom-0 left-0 w-full h-[4px] bg-brand-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="bg-white border-2 border-brand-border p-8 rounded-[20px] shadow-sm hover:border-brand-primary hover:shadow-md transition-all duration-300 flex flex-col h-full relative overflow-hidden group">
+          <div class="w-14 h-14 bg-brand-bg rounded-[14px] flex items-center justify-center border border-brand-border text-brand-primary text-2xl mb-6">
+            <i class="fa-solid fa-briefcase"></i>
+          </div>
+          <h3 class="text-brand-darkest font-extrabold text-[18px] mb-3">Virtual Internships</h3>
+          <p class="text-brand-body text-[14px] leading-relaxed mb-6">Gain real-world experience through virtual internships with top companies.</p>
+          <a href="#" class="mt-auto inline-flex items-center gap-1.5 font-bold text-[13px] text-brand-primary hover:text-brand-secondary transition-all">Read more <i class="fa-solid fa-arrow-right text-[11px]"></i></a>
+          <!-- Bottom Accent Line -->
+          <div class="absolute bottom-0 left-0 w-full h-[4px] bg-brand-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+        </div>
+      </div>
+
+      <!-- bottom CTA -->
+      <div class="text-center mt-12">
+        <a href="#courses" class="bg-brand-primary text-white font-bold text-[15px] px-8 py-4 rounded-full hover:bg-brand-secondary hover:-translate-y-0.5 transition-all inline-block shadow-md">Explore Courses</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Partnership Section (VTU Collaboration) -->
+  <section class="py-20 bg-white border-t border-brand-border">
+    <div class="max-w-[1160px] mx-auto px-6">
+      <div class="bg-brand-bg border border-brand-border rounded-[24px] p-8 md:p-12 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Text details -->
+        <div class="lg:col-span-7 flex flex-col items-start text-left">
+          <span class="bg-white border border-brand-border text-brand-primary font-bold text-[12px] uppercase px-4 py-1.5 rounded-full mb-4">Partnership</span>
+          <h2 class="text-brand-darkest font-extrabold text-[28px] md:text-[34px] tracking-tight mb-2">Our Collaboration with VTU</h2>
+          <h3 class="text-brand-secondary font-bold text-[18px] md:text-[20px] mb-4">Edutainer × VTU Collaboration</h3>
+          
+          <h4 class="text-brand-darkest font-bold text-[16px] mb-3">Empowering Students Through Partnership</h4>
+          <p class="text-brand-body text-[15px] md:text-[16px] leading-relaxed mb-8">
+            In partnership with VTU, a prestigious technological university, we're preparing students for future careers by offering skill-based learning and virtual internships. This collaboration empowers young minds with real-world skills and practical experience, bridging academia with industry.
+          </p>
+          <div class="flex flex-wrap gap-4 w-full sm:w-auto">
+            <a href="#courses" class="bg-brand-primary text-white font-bold text-[15px] px-8 py-4 rounded-full hover:bg-brand-secondary hover:-translate-y-0.5 transition-all text-center">Explore Courses</a>
+            <a href="#about" class="bg-white border border-brand-border text-brand-secondary font-bold text-[15px] px-8 py-4 rounded-full hover:border-brand-primary hover:text-brand-primary hover:-translate-y-0.5 transition-all text-center">Learn More</a>
+          </div>
+        </div>
+
+        <!-- Collaboration Image side -->
+        <div class="lg:col-span-5 flex justify-center w-full relative">
+          <div class="relative w-full max-w-[420px]">
+            <div class="absolute -inset-1 bg-gradient-to-r from-brand-accent to-brand-primary rounded-[20px] blur opacity-10 -z-10"></div>
+            <img src="./collaboration-vtu.png" alt="VTU Collaboration" class="w-full h-auto object-cover rounded-[18px] border border-brand-border shadow-sm">
+            <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-brand-accent rounded-2xl opacity-15 rotate-12 -z-10"></div>
+            <div class="absolute -top-4 -right-4 w-20 h-20 bg-brand-primary rounded-full opacity-10 blur-xl -z-10"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Popular Courses -->
+  <section class="py-20 bg-brand-bg border-t border-brand-border" id="courses">
+    <div class="max-w-[1160px] mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-brand-darkest font-extrabold text-[36px] tracking-tight mb-4">Popular Courses</h2>
+        <h3 class="text-brand-secondary font-bold text-[19px] mb-3">Transform Your Career with Expert-Led Courses</h3>
+        <p class="text-brand-body text-[16px] leading-relaxed">
+          Discover industry-leading courses designed by experts to help you master in-demand skills
+        </p>
+      </div>
+
+      <!-- Filter pills -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12">
+        <button class="filter-pill active px-6 py-2.5 rounded-full text-[14px] font-bold border border-brand-primary bg-brand-primary text-white transition-all shadow-sm" data-filter="all">All</button>
+        <button class="filter-pill px-6 py-2.5 rounded-full text-[14px] font-bold border border-brand-border bg-white text-brand-secondary hover:border-brand-primary hover:text-brand-primary transition-all shadow-sm" data-filter="development">Development</button>
+        <button class="filter-pill px-6 py-2.5 rounded-full text-[14px] font-bold border border-brand-border bg-white text-brand-secondary hover:border-brand-primary hover:text-brand-primary transition-all shadow-sm" data-filter="ai-data">AI & Data</button>
+        <button class="filter-pill px-6 py-2.5 rounded-full text-[14px] font-bold border border-brand-border bg-white text-brand-secondary hover:border-brand-primary hover:text-brand-primary transition-all shadow-sm" data-filter="business">Business</button>
+      </div>
+
+      <!-- Grid course list (adjusted to 3 columns) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" id="coursesList">
         
-        <nav class="nav-bar">
-            <ul>
-                <li><i class="fas fa-bars"></i> All</li>
-                <li>Today's Deals</li>
-                <li>Customer Service</li>
-                <li>Registry</li>
-                <li>Gift Cards</li>
-                <li>Sell</li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Hero Banner -->
-    <section class="hero-banner">
-        <div class="hero-content">
-            <h1>Shop the best deals of the season</h1>
-            <p>Discover amazing products at unbeatable prices</p>
-            <button class="cta-button">Shop Now</button>
-        </div>
-    </section>
-
-    <!-- Category Cards -->
-    <section class="category-section">
-        <div class="category-grid">
-            <div class="category-card">
-                <h3>Electronics</h3>
-                <div class="category-image">
-                    <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400&h=300&fit=crop" alt="Electronics">
-                </div>
-                <a href="#" class="category-link">Shop now</a>
+        <!-- Course 1 -->
+        <div class="bg-white border-2 border-brand-border rounded-[20px] overflow-hidden hover:border-brand-primary hover:shadow-lg transition-all duration-300 flex flex-col h-full course-card" data-category="business">
+          <div class="h-48 overflow-hidden relative">
+            <img src="./course_english.png" alt="English (IELTS Readiness) Course" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+            <span class="absolute top-4 right-4 bg-brand-primary text-white font-extrabold text-[11px] uppercase tracking-wider py-1 px-3.5 rounded-full">Free</span>
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <div class="flex justify-between items-center mb-3">
+              <span class="bg-brand-bg border border-brand-border text-brand-secondary font-bold text-[10px] uppercase py-0.5 px-2.5 rounded">Business</span>
+              <div class="flex items-center text-brand-accent text-[12px] font-bold">
+                <i class="fa-solid fa-star mr-1"></i> 5.0
+              </div>
             </div>
+            <h4 class="text-brand-darkest font-extrabold text-[17px] mb-2 leading-snug line-clamp-2">English (IELTS Readiness) Course</h4>
+            <p class="text-brand-body text-[13px] leading-relaxed mb-6 line-clamp-3">Elevate your English with our IELTS English course online. Join our IELTS classes online for effective online training IELTS and sound like a native speaker!</p>
             
-            <div class="category-card">
-                <h3>Fashion</h3>
-                <div class="category-image">
-                    <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=400&h=300&fit=crop" alt="Fashion">
-                </div>
-                <a href="#" class="category-link">Shop now</a>
+            <div class="mt-auto border-t border-brand-border pt-4 flex justify-between items-center text-[12px] font-semibold text-brand-secondary">
+              <span>Edutainer</span>
+              <div class="flex items-center gap-3">
+                <span><i class="fa-regular fa-clock mr-1 text-brand-primary"></i> 8 weeks</span>
+                <span><i class="fa-regular fa-user mr-1 text-brand-primary"></i> 2.5k</span>
+              </div>
             </div>
+            <button class="bg-brand-primary text-white font-bold text-[14px] py-3 rounded-full mt-4 hover:bg-brand-secondary transition-all w-full">Enroll Now</button>
+          </div>
+        </div>
+
+        <!-- Course 2 -->
+        <div class="bg-white border-2 border-brand-border rounded-[20px] overflow-hidden hover:border-brand-primary hover:shadow-lg transition-all duration-300 flex flex-col h-full course-card" data-category="ai-data">
+          <div class="h-48 overflow-hidden relative">
+            <img src="./course_ai.png" alt="Artificial Intelligence Course Online" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+            <span class="absolute top-4 right-4 bg-brand-primary text-white font-extrabold text-[11px] uppercase tracking-wider py-1 px-3.5 rounded-full">Free</span>
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <div class="flex justify-between items-center mb-3">
+              <span class="bg-brand-bg border border-brand-border text-brand-secondary font-bold text-[10px] uppercase py-0.5 px-2.5 rounded">AI & Data</span>
+              <div class="flex items-center text-brand-accent text-[12px] font-bold">
+                <i class="fa-solid fa-star mr-1"></i> 5.0
+              </div>
+            </div>
+            <h4 class="text-brand-darkest font-extrabold text-[17px] mb-2 leading-snug line-clamp-2">Artificial Intelligence Course Online</h4>
+            <p class="text-brand-body text-[13px] leading-relaxed mb-6 line-clamp-3">Explore AI concepts like data handling, preprocessing, model selection, and evaluation. Enhance your skills with our comprehensive AI upskilling online courses in AI technology.</p>
             
-            <div class="category-card">
-                <h3>Home & Kitchen</h3>
-                <div class="category-image">
-                    <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=400&h=300&fit=crop" alt="Home">
-                </div>
-                <a href="#" class="category-link">Shop now</a>
+            <div class="mt-auto border-t border-brand-border pt-4 flex justify-between items-center text-[12px] font-semibold text-brand-secondary">
+              <span>Edutainer</span>
+              <div class="flex items-center gap-3">
+                <span><i class="fa-regular fa-clock mr-1 text-brand-primary"></i> 12 weeks</span>
+                <span><i class="fa-regular fa-user mr-1 text-brand-primary"></i> 3.2k</span>
+              </div>
             </div>
+            <button class="bg-brand-primary text-white font-bold text-[14px] py-3 rounded-full mt-4 hover:bg-brand-secondary transition-all w-full">Enroll Now</button>
+          </div>
+        </div>
+
+        <!-- Course 3 -->
+        <div class="bg-white border-2 border-brand-border rounded-[20px] overflow-hidden hover:border-brand-primary hover:shadow-lg transition-all duration-300 flex flex-col h-full course-card" data-category="development">
+          <div class="h-48 overflow-hidden relative">
+            <img src="./course_react.png" alt="React JS Course" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+            <span class="absolute top-4 right-4 bg-brand-primary text-white font-extrabold text-[11px] uppercase tracking-wider py-1 px-3.5 rounded-full">Free</span>
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <div class="flex justify-between items-center mb-3">
+              <span class="bg-brand-bg border border-brand-border text-brand-secondary font-bold text-[10px] uppercase py-0.5 px-2.5 rounded">Development</span>
+              <div class="flex items-center text-brand-accent text-[12px] font-bold">
+                <i class="fa-solid fa-star mr-1"></i> 5.0
+              </div>
+            </div>
+            <h4 class="text-brand-darkest font-extrabold text-[17px] mb-2 leading-snug line-clamp-2">React JS Course</h4>
+            <p class="text-brand-body text-[13px] leading-relaxed mb-6 line-clamp-3">Master React JS with our online React courses! Gain practical skills, earn your React JS certification, and excel as a web developer. Join our React JS training online today!</p>
             
-            <div class="category-card">
-                <h3>Books</h3>
-                <div class="category-image">
-                    <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=400&h=300&fit=crop" alt="Books">
-                </div>
-                <a href="#" class="category-link">Shop now</a>
+            <div class="mt-auto border-t border-brand-border pt-4 flex justify-between items-center text-[12px] font-semibold text-brand-secondary">
+              <span>Edutainer</span>
+              <div class="flex items-center gap-3">
+                <span><i class="fa-regular fa-clock mr-1 text-brand-primary"></i> 10 weeks</span>
+                <span><i class="fa-regular fa-user mr-1 text-brand-primary"></i> 4.1k</span>
+              </div>
             </div>
+            <button class="bg-brand-primary text-white font-bold text-[14px] py-3 rounded-full mt-4 hover:bg-brand-secondary transition-all w-full">Enroll Now</button>
+          </div>
         </div>
-    </section>
 
-    <!-- Products Section -->
-    <section class="products-section">
-        <h2>Today's Deals</h2>
-        <div class="products-grid">
-            <!-- Product 1 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-badge">-25%</span>
-                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop" alt="Headphones">
-                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
-                </div>
-                <div class="product-info">
-                    <h3>Wireless Headphones</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <span>(1,234)</span>
-                    </div>
-                    <div class="price">
-                        <span class="current-price">$74.99</span>
-                        <span class="original-price">$99.99</span>
-                    </div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
-            </div>
+      </div>
 
-            <!-- Product 2 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-badge">-30%</span>
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop" alt="Watch">
-                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
-                </div>
-                <div class="product-info">
-                    <h3>Premium Smart Watch</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <span>(892)</span>
-                    </div>
-                    <div class="price">
-                        <span class="current-price">$139.99</span>
-                        <span class="original-price">$199.99</span>
-                    </div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
-            </div>
+      <!-- view all CTA -->
+      <div class="text-center">
+        <a href="#courses" class="bg-white border border-brand-border text-brand-secondary font-bold text-[15px] px-10 py-4 rounded-full hover:border-brand-primary hover:text-brand-primary hover:-translate-y-0.5 transition-all inline-block shadow-sm">View All Courses</a>
+      </div>
+    </div>
+  </section>
 
-            <!-- Product 3 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-badge">-15%</span>
-                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop" alt="Sunglasses">
-                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
-                </div>
-                <div class="product-info">
-                    <h3>Designer Sunglasses</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <span>(2,156)</span>
-                    </div>
-                    <div class="price">
-                        <span class="current-price">$84.99</span>
-                        <span class="original-price">$99.99</span>
-                    </div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
-            </div>
+  <!-- 7. Student Success Stories -->
+  <section class="py-20 bg-white border-t border-brand-border" id="testimonials">
+    <div class="max-w-[1160px] mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-brand-darkest font-extrabold text-[36px] tracking-tight mb-4">Student Success Stories</h2>
+        <h3 class="text-brand-secondary font-bold text-[19px] mb-3">What Our Edutainees Say</h3>
+        <p class="text-brand-body text-[16px] leading-relaxed">
+          Real stories from students who transformed their careers with our programs
+        </p>
+      </div>
 
-            <!-- Product 4 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-badge">-40%</span>
-                    <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&h=400&fit=crop" alt="Sneakers">
-                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
-                </div>
-                <div class="product-info">
-                    <h3>Running Sneakers</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <span>(3,421)</span>
-                    </div>
-                    <div class="price">
-                        <span class="current-price">$59.99</span>
-                        <span class="original-price">$99.99</span>
-                    </div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Story 1 -->
+        <div class="bg-white border-2 border-brand-border p-8 rounded-[20px] shadow-sm hover:border-brand-primary hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="text-brand-accent text-4xl mb-4 opacity-50"><i class="fa-solid fa-quote-left"></i></div>
+            <p class="text-brand-body text-[14px] leading-relaxed mb-6 italic text-justify">"The hands-on projects and virtual internships completely changed things for me. I built actual full-stack applications, worked with databases, and deployed projects in a real-world developer environment."</p>
+          </div>
+          <div class="flex items-center gap-3 border-t border-brand-border pt-4 mt-4">
+            <div class="w-11 h-11 bg-brand-bg rounded-full border border-brand-border flex items-center justify-center text-brand-primary font-bold text-[14px]">
+              AS
             </div>
-
-            <!-- Product 5 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-badge">-20%</span>
-                    <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&h=400&fit=crop" alt="Perfume">
-                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
-                </div>
-                <div class="product-info">
-                    <h3>Luxury Perfume</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <span>(567)</span>
-                    </div>
-                    <div class="price">
-                        <span class="current-price">$79.99</span>
-                        <span class="original-price">$99.99</span>
-                    </div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
+            <div class="text-left">
+              <h4 class="text-brand-darkest font-extrabold text-[14px]">Aarav Sharma</h4>
+              <p class="text-brand-secondary font-semibold text-[12px]">Full Stack Developer</p>
             </div>
-
-            <!-- Product 6 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-badge">-35%</span>
-                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop" alt="Backpack">
-                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
-                </div>
-                <div class="product-info">
-                    <h3>Travel Backpack</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <span>(1,890)</span>
-                    </div>
-                    <div class="price">
-                        <span class="current-price">$45.99</span>
-                        <span class="original-price">$69.99</span>
-                    </div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
-            </div>
-
-            <!-- Product 7 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-badge">-18%</span>
-                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&h=400&fit=crop" alt="Camera">
-                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
-                </div>
-                <div class="product-info">
-                    <h3>Digital Camera</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <span>(745)</span>
-                    </div>
-                    <div class="price">
-                        <span class="current-price">$329.99</span>
-                        <span class="original-price">$399.99</span>
-                    </div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
-            </div>
-
-            <!-- Product 8 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="discount-badge">-50%</span>
-                    <img src="https://images.unsplash.com/photo-1589391886645-d51941baf7fb?w=400&h=400&fit=crop" alt="Keyboard">
-                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
-                </div>
-                <div class="product-info">
-                    <h3>Mechanical Keyboard</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <span>(2,987)</span>
-                    </div>
-                    <div class="price">
-                        <span class="current-price">$49.99</span>
-                        <span class="original-price">$99.99</span>
-                    </div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
 
-    <!-- Banner Section -->
-    <section class="banner-promo">
-        <div class="banner-content">
-            <h2>Sign in for the best experience</h2>
-            <button class="sign-in-btn">Sign in securely</button>
+        <!-- Story 2 -->
+        <div class="bg-white border-2 border-brand-border p-8 rounded-[20px] shadow-sm hover:border-brand-primary hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="text-brand-accent text-4xl mb-4 opacity-50"><i class="fa-solid fa-quote-left"></i></div>
+            <p class="text-brand-body text-[14px] leading-relaxed mb-6 italic text-justify">"The personalized mentorship and structured learning paths are top-notch. It didn't just teach me the software tools—it taught me how to think and solve problems like a professional UI/UX designer."</p>
+          </div>
+          <div class="flex items-center gap-3 border-t border-brand-border pt-4 mt-4">
+            <div class="w-11 h-11 bg-brand-bg rounded-full border border-brand-border flex items-center justify-center text-brand-primary font-bold text-[14px]">
+              PN
+            </div>
+            <div class="text-left">
+              <h4 class="text-brand-darkest font-extrabold text-[14px]">Priya Nair</h4>
+              <p class="text-brand-secondary font-semibold text-[12px]">UI/UX Designer</p>
+            </div>
+          </div>
         </div>
-    </section>
 
-    <!-- More Products -->
-    <section class="products-section">
-        <h2>Recommended for You</h2>
-        <div class="products-grid">
-            <!-- Product 9 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400&h=400&fit=crop" alt="Smart Speaker">
-                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
-                </div>
-                <div class="product-info">
-                    <h3>Smart Speaker</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <span>(4,234)</span>
-                    </div>
-                    <div class="price">
-                        <span class="current-price">$89.99</span>
-                    </div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
+        <!-- Story 3 -->
+        <div class="bg-white border-2 border-brand-border p-8 rounded-[20px] shadow-sm hover:border-brand-primary hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="text-brand-accent text-4xl mb-4 opacity-50"><i class="fa-solid fa-quote-left"></i></div>
+            <p class="text-brand-body text-[14px] leading-relaxed mb-6 italic text-justify">"DevOps concepts always felt overwhelming until I took this program. The structured, practical curriculum paired with virtual internships bridged the gap between academic learning and real industry standards."</p>
+          </div>
+          <div class="flex items-center gap-3 border-t border-brand-border pt-4 mt-4">
+            <div class="w-11 h-11 bg-brand-bg rounded-full border border-brand-border flex items-center justify-center text-brand-primary font-bold text-[14px]">
+              RM
             </div>
-
-            <!-- Product 10 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=400&h=400&fit=crop" alt="Plant">
-                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
-                </div>
-                <div class="product-info">
-                    <h3>Indoor Plant Set</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <span>(1,567)</span>
-                    </div>
-                    <div class="price">
-                        <span class="current-price">$34.99</span>
-                    </div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
+            <div class="text-left">
+              <h4 class="text-brand-darkest font-extrabold text-[14px]">Rohan Mehta</h4>
+              <p class="text-brand-secondary font-semibold text-[12px]">DevOps Engineer</p>
             </div>
-
-            <!-- Product 11 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=400&fit=crop" alt="Laptop">
-                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
-                </div>
-                <div class="product-info">
-                    <h3>Laptop Computer</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <span>(5,432)</span>
-                    </div>
-                    <div class="price">
-                        <span class="current-price">$799.99</span>
-                    </div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
-            </div>
-
-            <!-- Product 12 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=400&h=400&fit=crop" alt="Console">
-                    <button class="wishlist-btn"><i class="far fa-heart"></i></button>
-                </div>
-                <div class="product-info">
-                    <h3>Gaming Console</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <span>(8,901)</span>
-                    </div>
-                    <div class="price">
-                        <span class="current-price">$499.99</span>
-                    </div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-            Back to top
-        </div>
+  <!-- 7.5. Pricing Section -->
+  <section class="py-20 bg-brand-bg border-t border-brand-border" id="pricing">
+    <div class="max-w-[1160px] mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-brand-darkest font-extrabold text-[36px] tracking-tight mb-4">Course Pricing</h2>
+        <p class="text-brand-secondary text-[18px] leading-relaxed">
+          30+ Hours of informative and engaging content with practical experiences
+        </p>
+      </div>
+
+      <div class="max-w-[840px] mx-auto relative">
+        <!-- Offset Background Shadow (inspired by card design container) -->
+        <div class="absolute inset-0 bg-[#54AFFE] translate-x-2.5 translate-y-2.5 rounded-[24px] -z-10 border-2 border-brand-darkest"></div>
         
-        <div class="footer-content">
-            <div class="footer-column">
-                <h4>Get to Know Us</h4>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Press Releases</a></li>
-                    <li><a href="#">ShopZone Cares</a></li>
-                </ul>
+        <!-- Main Pricing Card -->
+        <div class="bg-white border-2 border-brand-darkest rounded-[24px] p-8 md:p-12 relative flex flex-col shadow-sm pb-16">
+          <div class="text-center mb-8">
+            <h3 class="text-brand-darkest font-extrabold text-[22px] md:text-[24px] mb-4">UX Design - With Job Assistance</h3>
+            <div class="flex items-center justify-center gap-4 flex-wrap">
+              <div class="flex items-baseline gap-1">
+                <span class="text-brand-primary font-extrabold text-[44px] md:text-[52px] leading-none">₹24,999</span>
+                <span class="text-brand-secondary text-[14px] font-semibold">/ full track</span>
+              </div>
+              <div class="flex flex-col items-start text-left">
+                <span class="text-brand-body/50 line-through text-[18px] font-bold">₹49,999</span>
+                <span class="text-brand-primary font-bold text-[12px] italic tracking-wide">50% Early Bird Discount</span>
+              </div>
             </div>
-            
-            <div class="footer-column">
-                <h4>Make Money with Us</h4>
-                <ul>
-                    <li><a href="#">Sell on ShopZone</a></li>
-                    <li><a href="#">Become an Affiliate</a></li>
-                    <li><a href="#">Advertise Your Products</a></li>
-                    <li><a href="#">Self-Publish with Us</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h4>Payment Products</h4>
-                <ul>
-                    <li><a href="#">ShopZone Business Card</a></li>
-                    <li><a href="#">Shop with Points</a></li>
-                    <li><a href="#">Reload Your Balance</a></li>
-                    <li><a href="#">Currency Converter</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h4>Let Us Help You</h4>
-                <ul>
-                    <li><a href="#">Your Account</a></li>
-                    <li><a href="#">Your Orders</a></li>
-                    <li><a href="#">Shipping Rates & Policies</a></li>
-                    <li><a href="#">Returns & Replacements</a></li>
-                    <li><a href="#">Help</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <div class="footer-logo">
-                <i class="fas fa-shopping-cart"></i>
-                <span>ShopZone</span>
-            </div>
-            <div class="footer-links">
-                <a href="#">Conditions of Use</a>
-                <a href="#">Privacy Notice</a>
-                <a href="#">Interest-Based Ads</a>
-            </div>
-            <p>&copy; 2026 ShopZone.com, Inc. or its affiliates</p>
-        </div>
-    </footer>
+          </div>
 
-    <script src="script.js"></script>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mb-10 border-t border-brand-border pt-8 text-left">
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-green-500 text-lg mt-0.5"></i>
+              <span class="text-brand-body text-[15px] font-medium leading-normal">All 6 Program Modules and Capstone Project</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-green-500 text-lg mt-0.5"></i>
+              <span class="text-brand-body text-[15px] font-medium leading-normal">Personalised Resume and Portfolio Preparation</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-green-500 text-lg mt-0.5"></i>
+              <span class="text-brand-body text-[15px] font-medium leading-normal">Weekend and after work weekday Live classes</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-green-500 text-lg mt-0.5"></i>
+              <span class="text-brand-body text-[15px] font-medium leading-normal">LinkedIn+Twitter Profile Optimization</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-green-500 text-lg mt-0.5"></i>
+              <span class="text-brand-body text-[15px] font-medium leading-normal">Weekly assignments and Case Studies</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-green-500 text-lg mt-0.5"></i>
+              <span class="text-brand-body text-[15px] font-medium leading-normal">Two 1:1 Career counselling Call</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-green-500 text-lg mt-0.5"></i>
+              <span class="text-brand-body text-[15px] font-medium leading-normal">Job Assistance - Full Access with Live Classes</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-green-500 text-lg mt-0.5"></i>
+              <span class="text-brand-body text-[15px] font-medium leading-normal">Four Mock Interviews with Mentors</span>
+            </div>
+          </div>
+          
+          <!-- Overlapping Centered Button -->
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-full max-w-[280px]">
+            <button class="bg-[#078be3] border-2 border-brand-darkest hover:bg-[#0579c7] text-white font-extrabold text-[15px] tracking-wider py-4 px-6 rounded-full w-full shadow-md transition-all flex items-center justify-center gap-2 uppercase">
+              <i class="fa-solid fa-graduation-cap"></i> Start Learning <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Get Started -->
+  <section class="py-20 bg-brand-bg border-t border-brand-border">
+    <div class="max-w-[1160px] mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-brand-darkest font-extrabold text-[36px] tracking-tight mb-4">Get Started</h2>
+        <h3 class="text-brand-secondary font-bold text-[19px] mb-3">Start Your Journey with Edutainer</h3>
+        <p class="text-brand-body text-[16px] leading-relaxed">
+          Whether you're a student, university, or looking for career opportunities, we have the perfect path for you
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="bg-white border-2 border-brand-border p-8 rounded-[20px] shadow-sm hover:border-brand-primary hover:shadow-md transition-all duration-300 text-center flex flex-col items-center gap-4">
+          <span class="bg-brand-bg border border-brand-border text-brand-primary font-bold text-[11px] uppercase tracking-wider py-1 px-3.5 rounded-full mb-2">Universities</span>
+          <h4 class="text-brand-darkest font-extrabold text-[18px]">For Universities</h4>
+          <p class="text-brand-body text-[13px] leading-relaxed">Partner with us to provide your students with skill-based learning and virtual internships.</p>
+          <a href="mailto:contact@edutainer.com" class="bg-white border border-brand-border text-brand-secondary font-bold text-[14px] py-3.5 rounded-full hover:border-brand-primary hover:text-brand-primary transition-all w-full mt-auto block text-center">Contact Us</a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white border-2 border-brand-border p-8 rounded-[20px] shadow-sm hover:border-brand-primary hover:shadow-md transition-all duration-300 text-center flex flex-col items-center gap-4">
+          <span class="bg-brand-bg border border-brand-border text-brand-primary font-bold text-[11px] uppercase tracking-wider py-1 px-3.5 rounded-full mb-2">Students</span>
+          <h4 class="text-brand-darkest font-extrabold text-[18px]">For Students</h4>
+          <p class="text-brand-body text-[13px] leading-relaxed">Upgrade your career prospects with industry aligned courses, mentorship, and internships.</p>
+          <a href="mailto:contact@edutainer.com" class="bg-brand-primary text-white font-bold text-[14px] py-3.5 rounded-full hover:bg-brand-secondary transition-all w-full mt-auto block text-center shadow-sm">Contact Us</a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white border-2 border-brand-border p-8 rounded-[20px] shadow-sm hover:border-brand-primary hover:shadow-md transition-all duration-300 text-center flex flex-col items-center gap-4">
+          <span class="bg-brand-bg border border-brand-border text-brand-primary font-bold text-[11px] uppercase tracking-wider py-1 px-3.5 rounded-full mb-2">Careers</span>
+          <h4 class="text-brand-darkest font-extrabold text-[18px]">For Career Opportunities</h4>
+          <p class="text-brand-body text-[13px] leading-relaxed">Join our dynamic team and help build the future of education, mentorship, and internships.</p>
+          <a href="mailto:contact@edutainer.com" class="bg-white border border-brand-border text-brand-secondary font-bold text-[14px] py-3.5 rounded-full hover:border-brand-primary hover:text-brand-primary transition-all w-full mt-auto block text-center">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Footer -->
+  <footer class="bg-white border-t border-brand-border py-16">
+    <div class="max-w-[1160px] mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
+        <!-- Logo and tagline -->
+        <div class="md:col-span-6 flex flex-col items-start">
+          <a href="#" class="inline-block mb-4">
+            <img src="./edu_logo.svg" alt="Edutainer Logo" class="h-9 w-auto">
+          </a>
+          <p class="text-brand-body text-[14px] leading-relaxed max-w-sm mb-6">
+            Reshaping Learning for the Modern World, where Education Meets Accessibility and Inclusivity.
+          </p>
+        </div>
+
+        <!-- Column Platform -->
+        <div class="md:col-span-3">
+          <h4 class="text-brand-darkest font-bold text-[14px] uppercase tracking-wider mb-4">Platform</h4>
+          <ul class="flex flex-col gap-3">
+            <li><a href="#courses" class="text-brand-body text-[14px] hover:text-brand-primary transition-all">Courses</a></li>
+            <li><a href="#about" class="text-brand-body text-[14px] hover:text-brand-primary transition-all">About Us</a></li>
+            <li><a href="mailto:contact@edutainer.com" class="text-brand-body text-[14px] hover:text-brand-primary transition-all">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Column Legal -->
+        <div class="md:col-span-3">
+          <h4 class="text-brand-darkest font-bold text-[14px] uppercase tracking-wider mb-4">Legal</h4>
+          <ul class="flex flex-col gap-3">
+            <li><a href="#" class="text-brand-body text-[14px] hover:text-brand-primary transition-all">Privacy Policy</a></li>
+            <li><a href="#" class="text-brand-body text-[14px] hover:text-brand-primary transition-all">Refund Policy</a></li>
+            <li><a href="#" class="text-brand-body text-[14px] hover:text-brand-primary transition-all">Terms & Conditions</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-brand-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-brand-secondary text-[13px] font-semibold">© 2026 Edutainer. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a href="#" class="w-9 h-9 rounded-full bg-brand-bg flex items-center justify-center border border-brand-border text-brand-secondary hover:bg-brand-primary hover:text-white transition-all"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+          <a href="#" class="w-9 h-9 rounded-full bg-brand-bg flex items-center justify-center border border-brand-border text-brand-secondary hover:bg-brand-primary hover:text-white transition-all"><i class="fa-brands fa-twitter text-sm"></i></a>
+          <a href="#" class="w-9 h-9 rounded-full bg-brand-bg flex items-center justify-center border border-brand-border text-brand-secondary hover:bg-brand-primary hover:text-white transition-all"><i class="fa-brands fa-square-instagram text-sm"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript logic for course filter tabs and drawer menu -->
+  <script>
+    // 1. Mobile Menu Toggling
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      const isHidden = mobileMenu.classList.contains('hidden');
+      menuToggle.innerHTML = isHidden ? '<i class="fa-solid fa-bars"></i>' : '<i class="fa-solid fa-xmark"></i>';
+    });
+
+    // Close mobile menu when a drawer link is clicked
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+
+    // 2. Course Filtering System
+    const filterPills = document.querySelectorAll('.filter-pill');
+    const courseCards = document.querySelectorAll('.course-card');
+
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        // Remove active class from all pills
+        filterPills.forEach(p => {
+          p.classList.remove('active', 'bg-brand-primary', 'text-white', 'border-brand-primary');
+          p.classList.add('bg-white', 'text-brand-secondary', 'border-brand-border');
+        });
+
+        // Add active class to the clicked pill
+        pill.classList.add('active', 'bg-brand-primary', 'text-white', 'border-brand-primary');
+        pill.classList.remove('bg-white', 'text-brand-secondary', 'border-brand-border');
+
+        const filterValue = pill.getAttribute('data-filter');
+
+        // Toggle course visibility
+        courseCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filterValue === 'all' || category === filterValue) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+
+  </script>
 </body>
+
 </html>
